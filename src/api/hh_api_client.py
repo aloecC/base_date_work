@@ -38,11 +38,11 @@ class ParserConnection(Parser):
 class ParserGetInfo(ParserConnection):
     def __init__(self):
         super().__init__()
-        self.__vacancies_company =[]
+        self.__vacancies_company = []
 
     def fetch_company_details(self, hh_company_id):
         """Получение данных о компании."""
-        pass
+        #
 
     def fetch_company_vacancies(self, hh_company_id, page):
         """Получение вакансий компании с постраничной загрузкой"""
