@@ -117,3 +117,4 @@ class ParserConnection(Parser):
         self.__info_the_company = resp.json().get("items", [])
         return self.__info_the_company
 
+
