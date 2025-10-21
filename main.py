@@ -15,13 +15,10 @@ def main():
     hh_api.connect()# Проверка соединения
     base_company = hh_api.get_hh_company(company_id, data_company)# Получение компании по id
 
-    print(base_company)
-    data_info_vacancies = hh_api.fetch_company_vacancies(str(company_id))  # Получение вакансий компании по id компании
-
-    data_str_company = hh_api.get_str_hh_company(base_company) #Строчное отображение информации о компании
-    print(data_info_vacancies)
+    data_info_vacancies = hh_api.fetch_company_vacancies(str(18239))  # Получение вакансий компании по id компании
+    data_str_company = hh_api.get_str_hh_company(base_company) #Строчное отображение информации о компании)
 
     #db_user.create_datebase(name_bd, params)
-    #db_user.save_data_company(data_company, name_bd, params)
+    #db_user.save_data_to_bd(data_company, name_bd, params)
 
 print(main())
