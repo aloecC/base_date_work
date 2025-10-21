@@ -22,7 +22,7 @@ class Parser(ABC):
         pass
 
     @abstractmethod
-    def get_hh_company(self, data_company: List[Dict]) -> str or int:
+    def get_hh_company(self, company_id, data_company: List[Dict]) -> str or int:
         """Получение данных о компании."""
         pass
 
@@ -91,13 +91,11 @@ class ParserConnection(Parser):
         self.__data_company = filtered
         return self.__data_company
 
-    def get_hh_company(self, data_company: List[Dict]) -> str or int:
-        """Получение  компании по максимальному количеству открытых вакансий"""
-        company_max_open_vacancies = 0
+    def get_hh_company(self, company_id, data_company: List[Dict]) -> str or int:
+        """Получение  компании по ID"""
         base_company = {}
         for company in data_company:
-            if int(company['open_vacancies']) > company_max_open_vacancies:
-                company_max_open_vacancies = int(company['open_vacancies'])
+            if int(company['id']) == company_id:
                 base_company = company
         return base_company
 
@@ -110,7 +108,7 @@ class ParserConnection(Parser):
     def fetch_company_vacancies(self, company_id: str,  page: int = 0, per_page: int = 20) -> list[dict]:
         """Получение вакансий компании с постраничной загрузкой"""
         url = f"{self.BASE_URL}vacancies"
-        params = {"employer_id": str(company_id), "page": page, "per_page": per_page}
+        params = {"employer_id": company_id, "page": page, "per_page": per_page}
         resp = requests.get(url, headers=self.__headers, params=params, timeout=15)
         if resp.status_code != 200:
             raise RuntimeError(f"Ошибка запроса к HH: {resp.status_code} - {resp.text}")
