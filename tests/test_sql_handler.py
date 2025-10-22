@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-from src.handler_file.sql_handler import DBManager, DBManagerWorker
+from src.handler_file.sql_handler import DBManagerWorker
 
 
 class TestDBManagerWorker(unittest.TestCase):
@@ -116,4 +116,3 @@ class TestDBManagerWorker(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
